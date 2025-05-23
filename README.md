@@ -259,7 +259,8 @@ if __name__ == '__main__':
 # <ins>Static Dash Preview</ins>:
 
 <img width="1262" alt="ROT" src="https://github.com/user-attachments/assets/645d5a78-dd35-419d-9312-f661b0b17cc0" />
-<img width="1277" alt="PUS" src="https://github.com/user-attachments/assets/822a7cf9-5bf3-4975-b9f7-d69f665a6355" />
-<img width="882" alt="PIE" src="https://github.com/user-attachments/assets/d6f1bd7f-c909-43e2-b1a6-7b7f0d339aff" />
-<img width="1033" alt="Heat" src="https://github.com/user-attachments/assets/ecb8a987-42ac-4920-8a1c-9207fb70df31" />
 <img width="1048" alt="TRC" src="https://github.com/user-attachments/assets/17e88372-c822-4edb-954d-1b196c057458" />
+<img width="1277" alt="PUS" src="https://github.com/user-attachments/assets/822a7cf9-5bf3-4975-b9f7-d69f665a6355" />
+<img width="1033" alt="Heat" src="https://github.com/user-attachments/assets/ecb8a987-42ac-4920-8a1c-9207fb70df31" />
+<img width="882" alt="PIE" src="https://github.com/user-attachments/assets/d6f1bd7f-c909-43e2-b1a6-7b7f0d339aff" />
+
