@@ -70,3 +70,159 @@ Visualization Types:
 3.	Scatter Plot – Price vs. units sold (with optional 3D variant)
 4.	Heatmap – Monthly revenue intensity by category
 5.	Pie Chart – Revenue distribution by category
+
+# Code
+
+````
+import dash
+from dash import dcc, html, Input, Output
+import pandas as pd
+import plotly.express as px
+
+# Load dataset
+df = pd.read_csv('clothing_sales.csv', parse_dates=['date'])
+````
+````
+# Initialize the Dash app
+app = dash.Dash(__name__)
+app.title = "Clothing Sales Dashboard"
+
+# Unique categories for dropdown
+categories = df['category'].unique()
+
+# Layout
+app.layout = html.Div(style={'fontFamily': 'Arial, sans-serif', 'margin': '20px'}, children=[
+    html.H1("Clothing Sales Dashboard", style={'textAlign': 'center'}),
+    
+    # Filters
+    html.Div([
+        html.Div([
+            html.Label("Select Category"),
+            dcc.Dropdown(
+                id='category-dropdown',
+                options=[{'label': cat, 'value': cat} for cat in categories],
+                value=list(categories),
+                multi=True
+            )
+        ], style={'width': '48%', 'display': 'inline-block'}),
+        
+        html.Div([
+            html.Label("Select Date Range"),
+            dcc.DatePickerRange(
+                id='date-picker',
+                start_date=df['date'].min(),
+                end_date=df['date'].max(),
+                display_format='YYYY-MM'
+            )
+        ], style={'width': '48%', 'display': 'inline-block', 'float': 'right'}),
+    ], style={'padding': '10px', 'backgroundColor': '#f9f9f9', 'borderRadius': '5px'}),
+    
+    # Charts
+    html.Div([
+        dcc.Graph(id='revenue-line-chart'),
+        dcc.Graph(id='top-categories-bar'),
+        dcc.Graph(id='price-units-scatter'),
+        dcc.Graph(id='sales-heatmap'),
+        dcc.Graph(id='category-pie-chart'),
+    ], style={'marginTop': '20px'})
+])
+
+# Callbacks to update all five charts
+@app.callback(
+    [
+        Output('revenue-line-chart', 'figure'),
+        Output('top-categories-bar', 'figure'),
+        Output('price-units-scatter', 'figure'),
+        Output('sales-heatmap', 'figure'),
+        Output('category-pie-chart', 'figure'),
+    ],
+    [
+        Input('category-dropdown', 'value'),
+        Input('date-picker', 'start_date'),
+        Input('date-picker', 'end_date')
+    ]
+)
+def update_charts(selected_categories, start_date, end_date):
+    # Filter data
+    mask = (
+        df['category'].isin(selected_categories) &
+        (df['date'] >= pd.to_datetime(start_date)) &
+        (df['date'] <= pd.to_datetime(end_date))
+    )
+    dff = df.loc[mask]
+
+    # 1. Line chart: Total Revenue Over Time by Category
+    revenue_time_cat = (
+        dff.groupby(['date', 'category'])['revenue']
+           .sum()
+           .reset_index()
+    )
+    fig1 = px.line(
+        revenue_time_cat,
+        x='date', y='revenue', color='category',
+        title='Revenue Over Time by Category',
+        labels={'date':'Date','revenue':'Revenue','category':'Category'}
+    )
+
+    # 2. Bar chart: Revenue by Category
+    cat_revenue = (
+        dff.groupby('category')['revenue']
+           .sum()
+           .reset_index()
+           .sort_values('revenue', ascending=False)
+    )
+    fig2 = px.bar(
+        cat_revenue,
+        x='category', y='revenue',
+        title='Total Revenue by Category',
+        labels={'revenue':'Revenue','category':'Category','product_name':'Product Name'}
+    )
+
+    # 3. Scatter: Price vs. Units Sold
+    sample = dff.sample(min(len(dff), 500))
+    fig3 = px.scatter(
+        sample,
+        x='price', y='units_sold',
+        color='category',
+        title='Price vs. Units Sold',
+        hover_data=['sku'],
+        labels={'price':'Price','units_sold':'Units Sold','category':'Category'}
+    )
+
+    # 4. Heatmap: Monthly Revenue by Category
+    heatmap_df = (
+        dff.groupby([dff['date'].dt.to_period('M').dt.to_timestamp(), 'category'])['revenue']
+           .sum()
+           .reset_index()
+           .pivot(index='date', columns='category', values='revenue')
+           .fillna(0)
+    )
+    fig4 = px.imshow(
+        heatmap_df.T,
+        labels={'x':'Month', 'y':'Category', 'color':'Revenue'},
+        x=heatmap_df.index.astype(str),
+        y=heatmap_df.columns,
+        title='Monthly Revenue Heatmap'
+    )
+    fig4.update_xaxes(tickangle=45)
+
+    # 5. Pie chart: Revenue Distribution by Category
+    total_rev = cat_revenue
+    fig5 = px.pie(
+        total_rev,
+        names='category',
+        values='revenue',
+        title='Revenue Distribution by Category'
+    )
+
+    return fig1, fig2, fig3, fig4, fig5
+
+if __name__ == '__main__':
+    app.run(debug=True)
+````
+
+<img width="1262" alt="ROT" src="https://github.com/user-attachments/assets/645d5a78-dd35-419d-9312-f661b0b17cc0" />
+<img width="1198" alt="TRC" src="https://github.com/user-attachments/assets/2fb5e64c-d8e5-406f-8eeb-69a52b2fe43c" />
+<img width="1277" alt="PUS" src="https://github.com/user-attachments/assets/822a7cf9-5bf3-4975-b9f7-d69f665a6355" />
+<img width="1268" alt="MRH" src="https://github.com/user-attachments/assets/68528450-ad90-49b2-86b3-87a837f7cab5" />
+<img width="1235" alt="RDC" src="https://github.com/user-attachments/assets/9268bfb4-32bf-48ee-bbdd-375548fe51f3" />
