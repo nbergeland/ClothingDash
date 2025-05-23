@@ -167,7 +167,7 @@ def update_charts(selected_categories, start_date, end_date):
         labels={'date':'Date','revenue':'Revenue','category':'Category'}
     )
 
-    # 2. Bar chart: Revenue by Category
+     # 2. Bar chart: Revenue by Category (3D)
     cat_revenue = (
         dff.groupby('category')['revenue']
            .sum()
@@ -178,8 +178,20 @@ def update_charts(selected_categories, start_date, end_date):
         cat_revenue,
         x='category', y='revenue',
         title='Total Revenue by Category',
-        labels={'revenue':'Revenue','category':'Category','product_name':'Product Name'}
+        labels={'revenue':'Revenue ($)','category':'Category'},
+        color='revenue',
+        color_continuous_scale=px.colors.sequential.Viridis,
+        template='plotly_white'
     )
+    fig2.update_layout(
+        plot_bgcolor='rgba(240,240,240,0.2)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(family="Arial", size=12),
+        coloraxis_showscale=True,
+        xaxis=dict(tickangle=30),
+        yaxis=dict(showgrid=True, gridcolor='rgba(200,200,200,0.4)')
+    )
+    fig2.update_traces(marker=dict(line=dict(width=1, color='rgba(0,0,0,0.4)')))
 
     # 3. Scatter: Price vs. Units Sold
     sample = dff.sample(min(len(dff), 500))
@@ -192,7 +204,7 @@ def update_charts(selected_categories, start_date, end_date):
         labels={'price':'Price','units_sold':'Units Sold','category':'Category'}
     )
 
-    # 4. Heatmap: Monthly Revenue by Category
+     # 4. Heatmap: Monthly Revenue by Category (enhanced)
     heatmap_df = (
         dff.groupby([dff['date'].dt.to_period('M').dt.to_timestamp(), 'category'])['revenue']
            .sum()
@@ -202,26 +214,47 @@ def update_charts(selected_categories, start_date, end_date):
     )
     fig4 = px.imshow(
         heatmap_df.T,
-        labels={'x':'Month', 'y':'Category', 'color':'Revenue'},
+        labels={'x':'Month', 'y':'Category', 'color':'Revenue ($)'},
         x=heatmap_df.index.astype(str),
         y=heatmap_df.columns,
-        title='Monthly Revenue Heatmap'
+        title='Monthly Revenue Heatmap',
+        color_continuous_scale=px.colors.sequential.Plasma
     )
-    fig4.update_xaxes(tickangle=45)
+    fig4.update_layout(
+        font=dict(family="Arial", size=12),
+        paper_bgcolor='rgba(0,0,0,0)',
+        margin=dict(l=50, r=50, t=50, b=50)
+    )
+    fig4.update_xaxes(tickangle=45, side="bottom")
+    fig4.update_traces(hoverongaps=False)
+    
 
-    # 5. Pie chart: Revenue Distribution by Category
+     # 5. Pie chart: Revenue Distribution by Category (3D Donut)
     total_rev = cat_revenue
     fig5 = px.pie(
         total_rev,
         names='category',
         values='revenue',
-        title='Revenue Distribution by Category'
+        title='Revenue Distribution by Category',
+        color_discrete_sequence=px.colors.qualitative.Bold,
+        hole=0.4
+    )
+    fig5.update_layout(
+        font=dict(family="Arial", size=12),
+        paper_bgcolor='rgba(0,0,0,0)',
+        legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5),
+        margin=dict(l=20, r=20, t=60, b=100)
+    )
+    fig5.update_traces(
+        textinfo='percent+label',
+        textposition='inside',
+        marker=dict(line=dict(color='#FFFFFF', width=2))
     )
 
     return fig1, fig2, fig3, fig4, fig5
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True))
 ````
 # <ins>Static Dash Preview</ins>:
 
