@@ -71,6 +71,9 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 4.	Heatmap – Monthly revenue intensity by category
 5.	Pie Chart – Revenue distribution by category
 
+#### <ins>Prompt for Dataset Creation</ins>
+"Create a synthetic 10-year (2015–2025) monthly sales CSV for 1,000 clothing SKUs—including sku, date, category, subcategory, product_name, color, size, price, units_sold, and revenue—then build a Plotly Dash app (app.py) that loads this CSV, provides a category dropdown and date picker, and renders five interactive charts (line, bar, scatter, heatmap, pie), updating via a single callback. Include 3D chart variants for enhanced visual appeal"
+
 # <ins>Code</ins>:	
 
 ````
