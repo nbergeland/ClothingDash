@@ -38,7 +38,7 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 
 #### Data Source & Schema
 ![Screenshot](DSS.png)
-#### Dataset Creation Pipeline
+#### <ins>Dataset Creation Pipeline</ins>	
 	1.	Attribute Sampling
 	•	1,000 SKUs generated as zero-padded identifiers.
 	•	Categories assigned randomly from a predefined list; subcategories, colors, sizes, and prices sampled accordingly.
@@ -53,7 +53,7 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 	•	clothing_sales_10yr.csv (no product name)
 	•	clothing_sales_10yr_with_name.csv (includes product_name column)
 
-#### Prompting & Interactive Dashboard
+#### <ins>Prompting & Interactive Dashboard</ins>:	
 	Data Requests
 		•	Generated 2-year synthetic dataset for 1,000 SKUs
 		•	Extended to 10-year monthly data
@@ -65,7 +65,7 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 		•	Entry: app.py (or use app.ipynb + JupyterDash)
 		•	Layout: Category dropdown + date‐picker range
 		•	Interactivity: One @app.callback updates all charts
-<ins>Visualization Types:</ins>	
+<ins>Visualization Types</ins>:
 1.	Line Chart – Revenue over time by category
 2.	Bar Chart – Total revenue per category
 3.	Scatter Plot – Price vs. units sold (with optional 3D variant)
