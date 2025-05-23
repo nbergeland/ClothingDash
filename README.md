@@ -13,12 +13,12 @@ ClothingDash follows a simple three-component architecture where a CSV data sour
 ![Screenshot](HLSF.png)
 This diagram shows how the clothing_sales.csv file flows through pandas.read_csv() into the main callback function update_charts(), which processes user inputs from dcc.Dropdown and dcc.DatePickerRange components to generate charts via plotly.express and serve them through the app.run() web server.Data 
 
-## <ins>Processing Pipeline</ins>	
+## <ins>Processing Pipeline</ins>:
 ClothingDash implements a reactive data processing pipeline where user filter selections trigger data transformations and chart regeneration across all visualization types simultaneously.
 ![Screenshot](DPP.png)
 The pipeline begins with pd.read_csv() loading the CSV data with date parsing. User interactions with category_dropdown.value and date picker components trigger boolean indexing operations that create a filtered DataFrame (dff). This filtered data undergoes groupby() aggregation before being passed to individual plotly.express chart generation functions.
 
-## <ins> </ins>	Application Structure
+## <ins>Application Structure</ins>:	
 The app.ipynb file contains the complete Dash application implementation using a single-file architecture pattern common in data science workflows.
 
 ### <ins>Core Application Components</ins>	
