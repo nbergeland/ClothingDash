@@ -257,7 +257,7 @@ if __name__ == '__main__':
     app.run(debug=True))
 ````
 # <ins>Static Dash Preview</ins>:
-
+<img width="1034" alt="Menu" src="https://github.com/user-attachments/assets/6e2a1f08-41c5-4d4c-a792-11def3f56007" />
 <img width="1262" alt="ROT" src="https://github.com/user-attachments/assets/645d5a78-dd35-419d-9312-f661b0b17cc0" />
 <img width="1048" alt="TRC" src="https://github.com/user-attachments/assets/17e88372-c822-4edb-954d-1b196c057458" />
 <img width="1277" alt="PUS" src="https://github.com/user-attachments/assets/822a7cf9-5bf3-4975-b9f7-d69f665a6355" />
