@@ -39,32 +39,32 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 #### Data Source & Schema
 ![Screenshot](DSS.png)
 #### Dataset Creation Pipeline
-1.	Attribute Sampling
-•	1,000 SKUs generated as zero-padded identifiers.
-•	Categories assigned randomly from a predefined list; subcategories, colors, sizes, and prices sampled accordingly.
-2.	Temporal Expansion
-•	Monthly index created spanning May 2015 through April 2025 (120 periods).
-•	Cartesian product of SKUs × months yields 120,000 rows.
-3.	Sales Simulation & Revenue
-•	Poisson distributions parameterized per category model units sold.
-•	Revenue computed per row, rounded to two decimal places.
-4.	Output
-•	Final CSV exports:
-•	clothing_sales_10yr.csv (no product name)
-•	clothing_sales_10yr_with_name.csv (includes product_name column)
+	1.	Attribute Sampling
+	•	1,000 SKUs generated as zero-padded identifiers.
+	•	Categories assigned randomly from a predefined list; subcategories, colors, sizes, and prices sampled accordingly.
+	2.	Temporal Expansion
+	•	Monthly index created spanning May 2015 through April 2025 (120 periods).
+	•	Cartesian product of SKUs × months yields 120,000 rows.
+	3.	Sales Simulation & Revenue
+	•	Poisson distributions parameterized per category model units sold.
+	•	Revenue computed per row, rounded to two decimal places.
+	4.	Output
+	•	Final CSV exports:
+	•	clothing_sales_10yr.csv (no product name)
+	•	clothing_sales_10yr_with_name.csv (includes product_name column)
 
 #### Prompting & Interactive Dashboard
-Data Requests
-	•	Generated 2-year synthetic dataset for 1,000 SKUs
-	•	Extended to 10-year monthly data
-	•	Added product_name field on demand
-Dashboard Iteration
-	•	Built Plotly Dash app with filters and five chart types
-	•	Enhanced visuals with 3D charts per feedback
- App Structure
-	•	Entry: app.py (or use app.ipynb + JupyterDash)
-	•	Layout: Category dropdown + date‐picker range
-	•	Interactivity: One @app.callback updates all charts
+	Data Requests
+		•	Generated 2-year synthetic dataset for 1,000 SKUs
+		•	Extended to 10-year monthly data
+		•	Added product_name field on demand
+	Dashboard Iteration
+		•	Built Plotly Dash app with filters and five chart types
+		•	Enhanced visuals with 3D charts per feedback
+	 App Structure
+		•	Entry: app.py (or use app.ipynb + JupyterDash)
+		•	Layout: Category dropdown + date‐picker range
+		•	Interactivity: One @app.callback updates all charts
 Visualization Types:
 1.	Line Chart – Revenue over time by category
 2.	Bar Chart – Total revenue per category
