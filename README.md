@@ -64,7 +64,7 @@ This document outlines the creation of a synthetic clothing sales dataset and th
     •	Entry point: app.py (or app.ipynb with JupyterDash).
     •	Layout: Dropdown for categories + DatePickerRange for time span.
     •	Callbacks: Single @app.callback handles all filter inputs and regenerates five charts.
-•	Visualization Types:
+Visualization Types:
 1.	Line Chart – Revenue over time by category
 2.	Bar Chart – Total revenue per category
 3.	Scatter Plot – Price vs. units sold (with optional 3D variant)
