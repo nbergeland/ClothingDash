@@ -221,6 +221,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 ````
 # Static Dash Preview
+
 <img width="1262" alt="ROT" src="https://github.com/user-attachments/assets/645d5a78-dd35-419d-9312-f661b0b17cc0" />
 <img width="1198" alt="TRC" src="https://github.com/user-attachments/assets/2fb5e64c-d8e5-406f-8eeb-69a52b2fe43c" />
 <img width="1277" alt="PUS" src="https://github.com/user-attachments/assets/822a7cf9-5bf3-4975-b9f7-d69f665a6355" />
