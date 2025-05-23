@@ -251,7 +251,34 @@ def update_charts(selected_categories, start_date, end_date):
         marker=dict(line=dict(color='#FFFFFF', width=2))
     )
 
-    return fig1, fig2, fig3, fig4, fig5
+# 6. Animated scatter: revenue vs units_sold over time
+    anim_df = (
+        dff.groupby(['date', 'category'])
+           .agg({'units_sold':'sum','revenue':'sum'})
+           .reset_index()
+    )
+    fig6 = px.scatter(
+        anim_df,
+        x='units_sold', y='revenue',
+        animation_frame=anim_df['date'].dt.strftime('%Y-%m'),
+        animation_group='category',
+        color='category',
+        size='revenue',
+        hover_name='category',
+        title='Animated: Units Sold vs Revenue Over Time',
+        labels={'units_sold':'Units Sold','revenue':'Revenue ($)','animation_frame':'Month'},
+        color_discrete_sequence=colorscale
+    )
+    fig6.update_layout(
+        plot_bgcolor='rgba(240,240,240,0.2)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(family="Arial", size=12),
+        xaxis=dict(showgrid=True, gridcolor='rgba(200,200,200,0.4)'),
+        yaxis=dict(showgrid=True, gridcolor='rgba(200,200,200,0.4)'),
+        transition={'duration':500}
+    )
+
+    return fig1, fig2, fig3, fig4, fig5, fig6
 
 if __name__ == '__main__':
     app.run(debug=True))
@@ -263,4 +290,5 @@ if __name__ == '__main__':
 <img width="1277" alt="PUS" src="https://github.com/user-attachments/assets/822a7cf9-5bf3-4975-b9f7-d69f665a6355" />
 <img width="1033" alt="Heat" src="https://github.com/user-attachments/assets/ecb8a987-42ac-4920-8a1c-9207fb70df31" />
 <img width="882" alt="PIE" src="https://github.com/user-attachments/assets/d6f1bd7f-c909-43e2-b1a6-7b7f0d339aff" />
+<img width="1066" alt="Screenshot 2025-05-23 at 6 17 59 PM" src="https://github.com/user-attachments/assets/50f9e626-1bcd-420b-9b87-76d7fff48b67" />
 
