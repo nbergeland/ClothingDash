@@ -1,4 +1,4 @@
-# $${\color{blue} ClothingDash}$$
+# $${\color{carolinablue} ClothingDash}$$
 ## ClothingDash Overview
 This document provides a high-level introduction to ClothingDash, a Plotly Dash web application that creates interactive analytics dashboards for clothing sales data. ClothingDash processes synthetic sales data for 1,000 clothing SKUs and presents five different visualization types through a reactive web interface.
 
