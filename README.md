@@ -25,15 +25,14 @@ The app.ipynb file contains the complete Dash application implementation using a
 
 ![Screenshot](CAC.png)
 
-## Visualization Types
+## <ins>Visualization Types</ins>	
 ClothingDash generates five distinct chart types from the same filtered dataset, providing multiple analytical perspectives on clothing sales patterns.
 ![Screenshot](VT.png)
 Each chart type uses different groupby() operations and aggregation functions on the filtered DataFrame (dff) to create specialized views of the sales data. The reactive callback system ensures all five charts update simultaneously when filter values change.
 
-## <ins> </ins>	Clothing Sales Dataset & Dashboard Creation
+## <ins>Clothing Sales Dataset & Dashboard Creation</ins>	
 
-### <ins> </ins>	Dataset Generation Overview
-
+### <ins>Dataset Generation Overview</ins>
 This document outlines the creation of a synthetic clothing sales dataset and the interactive Plotly Dash application built atop it. The data simulates monthly sales for 1,000 unique SKUs over a 10-year period, each annotated with detailed product attributes and revenue calculations.
 
 #### <ins>Data Source & Schema</ins>	
@@ -221,7 +220,7 @@ def update_charts(selected_categories, start_date, end_date):
 if __name__ == '__main__':
     app.run(debug=True)
 ````
-# Static Dash Preview
+# <ins>Static Dash Preview</ins>	
 
 <img width="1262" alt="ROT" src="https://github.com/user-attachments/assets/645d5a78-dd35-419d-9312-f661b0b17cc0" />
 <img width="1198" alt="TRC" src="https://github.com/user-attachments/assets/2fb5e64c-d8e5-406f-8eeb-69a52b2fe43c" />
