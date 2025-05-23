@@ -1,24 +1,24 @@
 # <ins>ClothingDash</ins>
-## <ins>ClothingDash Overview</ins>:
+## <ins>ClothingDash Overview</ins>
 This document provides a high-level introduction to ClothingDash, a Plotly Dash web application that creates interactive analytics dashboards for clothing sales data. ClothingDash processes synthetic sales data for 1,000 clothing SKUs and presents five different visualization types through a reactive web interface.
 
-## <ins>System Architecture</ins>:
+## <ins>System Architecture</ins>
 ClothingDash follows a simple three-component architecture where a CSV data source feeds into a Jupyter notebook-based Dash application that generates interactive web visualizations.
 
-## <ins>Core Components</ins>:
+## <ins>Core Components</ins>
 ![Screenshot](CC.png)
 
 
-## <ins>High-Level System Flow</ins>:
+## <ins>High-Level System Flow</ins>
 ![Screenshot](HLSF.png)
 This diagram shows how the clothing_sales.csv file flows through pandas.read_csv() into the main callback function update_charts(), which processes user inputs from dcc.Dropdown and dcc.DatePickerRange components to generate charts via plotly.express and serve them through the app.run() web server.Data 
 
-## <ins>Processing Pipeline</ins>:
+## <ins>Processing Pipeline</ins>
 ClothingDash implements a reactive data processing pipeline where user filter selections trigger data transformations and chart regeneration across all visualization types simultaneously.
 ![Screenshot](DPP.png)
 The pipeline begins with pd.read_csv() loading the CSV data with date parsing. User interactions with category_dropdown.value and date picker components trigger boolean indexing operations that create a filtered DataFrame (dff). This filtered data undergoes groupby() aggregation before being passed to individual plotly.express chart generation functions.
 
-## <ins>Application Structure</ins>:	
+## <ins>Application Structure</ins>
 The app.ipynb file contains the complete Dash application implementation using a single-file architecture pattern common in data science workflows.
 
 ### <ins>Core Application Components</ins>	
@@ -32,12 +32,12 @@ Each chart type uses different groupby() operations and aggregation functions on
 
 ## <ins>Clothing Sales Dataset & Dashboard Creation</ins>	
 
-### <ins>Dataset Generation Overview</ins>:
+### <ins>Dataset Generation Overview</ins>
 This document outlines the creation of a synthetic clothing sales dataset and the interactive Plotly Dash application built atop it. The data simulates monthly sales for 1,000 unique SKUs over a 10-year period, each annotated with detailed product attributes and revenue calculations.
 
-#### <ins>Data Source & Schema</ins>:
+#### <ins>Data Source & Schema</ins>
 ![Screenshot](DSS.png)
-#### <ins>Dataset Creation Pipeline</ins>:	
+#### <ins>Dataset Creation Pipeline</ins>
 	1.	Attribute Sampling
 	•	1,000 SKUs generated as zero-padded identifiers.
 	•	Categories assigned randomly from a predefined list; subcategories, colors, sizes, and prices sampled accordingly.
@@ -52,7 +52,7 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 	•	clothing_sales_10yr.csv (no product name)
 	•	clothing_sales_10yr_with_name.csv (includes product_name column)
 
-#### <ins>Prompting & Interactive Dashboard</ins>:	
+#### <ins>Prompting & Interactive Dashboard</ins>
 	Data Requests
 		•	Generated 2-year synthetic dataset for 1,000 SKUs
 		•	Extended to 10-year monthly data
@@ -64,7 +64,7 @@ This document outlines the creation of a synthetic clothing sales dataset and th
 		•	Entry: app.py (or use app.ipynb + JupyterDash)
 		•	Layout: Category dropdown + date‐picker range
 		•	Interactivity: One @app.callback updates all charts
-<ins>Visualization Types</ins>:
+#### <ins>Visualization Types</ins>
 1.	Line Chart – Revenue over time by category
 2.	Bar Chart – Total revenue per category
 3.	Scatter Plot – Price vs. units sold (with optional 3D variant)
