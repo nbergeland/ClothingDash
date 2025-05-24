@@ -1,6 +1,6 @@
 # <ins>ClothingDash</ins>
 ## <ins>ClothingDash Overview</ins>
-This document provides a high-level introduction to ClothingDash, a Plotly Dash web application that creates interactive analytics dashboards for **clothing sales data**. ClothingDash processes synthetic sales data for 1,000 clothing SKUs and presents five different visualization types through a reactive web interface.
+This document provides a high-level introduction to ClothingDash, a Plotly Dash web application that creates interactive analytics dashboards for **clothing sales data**. ClothingDash processes synthetic sales data for 1,000 clothing SKUs and presents six different visualization types through a reactive web interface.
 
 ## <ins>System Architecture</ins>
 ClothingDash follows a simple three-component architecture where a CSV data source feeds into a Jupyter notebook-based Dash application that generates interactive web visualizations.
@@ -26,9 +26,9 @@ The app.ipynb file contains the complete Dash application implementation using a
 ![Screenshot](CAC.png)
 
 ## <ins>Visualization Types</ins>:	
-ClothingDash generates five distinct chart types from the same filtered dataset, providing multiple analytical perspectives on clothing sales patterns.
+ClothingDash generates six distinct chart types from the same filtered dataset, providing multiple analytical perspectives on clothing sales patterns.
 ![Screenshot](VT.png)
-Each chart type uses different groupby() operations and aggregation functions on the filtered DataFrame (dff) to create specialized views of the sales data. The reactive callback system ensures all five charts update simultaneously when filter values change.
+Each chart type uses different groupby() operations and aggregation functions on the filtered DataFrame (dff) to create specialized views of the sales data. The reactive callback system ensures all six charts update simultaneously when filter values change.
 
 ## <ins>Clothing Sales Dataset & Dashboard Creation</ins>	
 
@@ -58,7 +58,7 @@ Data Requests
 	•	Extended to 10-year monthly data
 	•	Added product_name field on demand
 Dashboard Iteration
-	•	Built Plotly Dash app with filters and five chart types
+	•	Built Plotly Dash app with filters and six chart types
 	•	Enhanced visuals with 3D charts per feedback
  App Structure
 	•	Entry: app.py (or use app.ipynb + JupyterDash)
@@ -130,7 +130,7 @@ app.layout = html.Div(style={'fontFamily': 'Arial, sans-serif', 'margin': '20px'
     ], style={'marginTop': '20px'})
 ])
 
-# Callbacks to update all five charts
+# Callbacks to update all six charts
 @app.callback(
     [
         Output('revenue-line-chart', 'figure'),
