@@ -1,6 +1,6 @@
 # <ins>ClothingDash</ins>
 ## <ins>ClothingDash Overview</ins>
-This document provides a high-level introduction to ClothingDash, a Plotly Dash web application that creates interactive analytics dashboards for **clothing sales data**. ClothingDash processes synthetic **sales** data for 1,000 clothing SKUs and presents six different visualization types through a reactive web interface.
+This document provides a high-level introduction to ClothingDash, a Plotly Dash web application that creates interactive analytics dashboards for **clothing sales data**. ClothingDash processes synthetic **sales data** for 1,000 clothing SKUs and presents six different visualization types through a reactive web interface.
 
 ## <ins>System Architecture</ins>
 ClothingDash follows a simple three-component architecture where a CSV data source feeds into a Jupyter notebook-based Dash application that generates interactive web visualizations.
